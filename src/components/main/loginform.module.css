@@ -1,0 +1,92 @@
+.form_box {
+  background-color: #fff;
+  height: 100%;
+  width: 50%;
+  box-shadow: 0 5px 45px rgba(0, 0, 0, 0.25);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.form_box.active {
+  left: 50%;
+}
+
+.form {
+  width: 100%;
+  padding: 50px;
+  font-size: 16px;
+  position: absolute;
+  transition: 0.5s;
+}
+
+.form__title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form__input {
+  width: 50%;
+  padding: 10px;
+  border: solid 1px #333;
+  font-size: inherit;
+}
+
+.form__btn {
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  background-color: #03a9f4;
+  color: #fff;
+  padding: 10px 50px;
+  width: 56%;
+}
+
+.form__btn_signup {
+  background-color: #f43648;
+}
+
+.form_forgot {
+  color: #333;
+}
+
+.form_signin {
+  left: 0;
+  transition-delay: 0.25s;
+}
+
+.form_signup {
+  left: 100%;
+  transition-delay: 0s;
+}
+
+.form_box.active .form_signin {
+  left: -100%;
+  transition-delay: 0s;
+}
+
+.form_box.active .form_signup {
+  left: 0;
+  transition-delay: 0.25s;
+}
+
+@media (max-width: 992px) {
+  .form_box {
+    width: 100%;
+    height: 500px;
+    box-shadow: none;
+    top: 0;
+  }
+
+  .form_box.active {
+    top: 150px;
+    left: 0;
+  }
+}
