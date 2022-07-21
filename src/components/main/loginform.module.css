@@ -55,6 +55,11 @@
 
 .form_forgot {
   color: #333;
+  cursor: pointer;
+}
+
+.form_forgot:hover {
+  color: royalblue;
 }
 
 .form_signin {

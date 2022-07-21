@@ -4,7 +4,7 @@ import './home.css'
 const Home = () => {
   return (
     <div className='account'>
-      Общая статистика
+      <p>Общая статистика</p>
     </div>
   );
 };

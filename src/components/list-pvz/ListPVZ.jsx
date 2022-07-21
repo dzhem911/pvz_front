@@ -4,7 +4,7 @@ import './listpvz.css'
 const ListPvz = () => {
   return (
     <div className='account'>
-      Список ПВЗ
+      <p>Список ПВЗ</p>
     </div>
   );
 };

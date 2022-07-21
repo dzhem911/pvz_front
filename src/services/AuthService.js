@@ -10,7 +10,15 @@ export default class AuthService {
     return $api.post('/registration', {firstName, lastName, phoneNumber, email, companyName, password, role})
   }
 
+  static async regUser(firstName, lastName, phoneNumber, email, founderEmail) {
+    return $api.post('/reguser', {firstName, lastName, phoneNumber, email, founderEmail})
+  }
+
   static async logout() {
     return $api.post('/logout')
+  }
+
+  static async refreshPassword(email) {
+    return $api.post('/refreshpassword', {email})
   }
 }

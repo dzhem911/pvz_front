@@ -5,7 +5,6 @@ import {loginUserAction} from "../../redux/userReducer";
 import {useNavigate} from 'react-router-dom'
 import loginFormStyle from './loginform.module.css'
 
-
 const LoginForm = () => {
 
   const [email, setEmail] = useState('')
@@ -17,13 +16,12 @@ const LoginForm = () => {
     e.preventDefault()
       try {
         const response = await AuthService.login(email, password);
-        console.log(response)
         localStorage.setItem('token', response.data.accessToken);
-        localStorage.setItem('user_email', response.data.user.email);
-        dispatch(loginUserAction(response.data.user))
+        sessionStorage.setItem('user_email', response.data.user.email);
+        sessionStorage.setItem('user_role', response.data.user.role)
+        localStorage.setItem('refresh', response.data.refreshToken)
         navigate('/account')
-        setEmail('')
-        setPassword('')
+        dispatch(loginUserAction(response.data.user))
       } catch (e) {
         console.log(e.response?.data?.message);
       }
@@ -42,7 +40,7 @@ const LoginForm = () => {
         <button className={loginFormStyle.form__btn}>Войти</button>
       </p>
       <p>
-        <a className={loginFormStyle.form_forgot} href='#'>Восстановить пароль</a>
+        <span className={loginFormStyle.form_forgot} onClick={() => navigate('/refreshpassword')}>Восстановить пароль</span>
       </p>
     </form>
   );

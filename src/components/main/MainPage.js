@@ -1,34 +1,11 @@
 import React, {useState} from 'react';
 import LoginForm from "./LoginForm";
-import {useDispatch} from "react-redux";
-import axios from "axios";
-import {API_URL} from "../../https";
-import {loginUserAction} from "../../redux/userReducer";
-import {useEffect} from "react";
 import mainPageStyle from './mainpage.module.css'
 import loginFormStyle from "./loginform.module.css";
 import Registration from "../registration/Registration";
 
 const MainPage = () => {
-  const dispatch = useDispatch()
   const [signUpBtn, setSignUpBtn] = useState(false)
-
-  async function checkAuth() {
-    try {
-      const response = await axios.get(`${API_URL}/refresh`, {withCredentials: true })
-      console.log(response)
-      localStorage.setItem('token', response.data.accessToken);
-      dispatch(loginUserAction(response.data.user))
-    } catch (e) {
-      console.log(e.response?.data?.message);
-    }
-  }
-
-  useEffect(() => (async ()=> {
-    if(localStorage.getItem('token')) {
-      await checkAuth()
-    }
-  })(),[])
 
   function signUpHandler() {
     setSignUpBtn(!signUpBtn)

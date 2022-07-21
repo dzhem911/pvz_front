@@ -25,8 +25,8 @@ const Registration = () => {
       console.log(regis)
       const response = await AuthService.login(email, password);
       localStorage.setItem('token', response.data.accessToken);
-      localStorage.setItem('user_email', response.data.user.email);
-      localStorage.setItem('user_role', response.data.user.role);
+      sessionStorage.setItem('user_email', response.data.user.email);
+      sessionStorage.setItem('user_role', response.data.user.role);
       dispatch(loginUserAction(response.data.user))
       navigate('/account')
     } catch (e) {

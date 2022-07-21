@@ -1,4 +1,3 @@
-import TopBar from "./components/topbar/TopBar";
 import {BrowserRouter} from "react-router-dom";
 import RouterApp from "./components/router/RouterApp";
 import LogoutButton from "./components/main/LogoutButton";
@@ -9,7 +8,6 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <TopBar/>
         <RouterApp/>
         <LogoutButton/>
       </BrowserRouter>

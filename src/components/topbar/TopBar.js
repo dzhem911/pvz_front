@@ -1,16 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import './topbar.css'
-import {useSelector} from "react-redux";
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 const TopBar = () => {
 
-  const user = useSelector(state => state.setUser.user)
-  const [userMail, setUsermail] = useState('')
+  const [userMail, setUsermail] = useState(sessionStorage.getItem('user_email'))
 
   useEffect(() => {
-    setUsermail(localStorage.getItem('user_email'))
-  })
+    setUsermail(() => userMail)
+  }, [])
 
   return (
     <div className='topBar'>

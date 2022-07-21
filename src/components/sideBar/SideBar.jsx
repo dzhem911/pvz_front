@@ -19,35 +19,36 @@ const Sidebar = () => {
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <ul className="sidebarList">
-            <li className="sidebarListItem active" onClick={() => navigate('')}>
+            <li className="sidebarListItem active" onClick={() => navigate('/account')}>
               <HomeIcon className="sidebarIcon" />
               Сводка
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('data-upload')}>
+            <li className="sidebarListItem" onClick={() => navigate('/account/data-upload')}>
               <CloudUploadIcon className="sidebarIcon" />
               Загрузка данных
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('pvz-list')}>
+            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-list')}>
               <ListAltIcon className="sidebarIcon" />
               Список ПВЗ
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('pvz-revenue')}>
+            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-revenue')}>
               <TrendingUpIcon className="sidebarIcon" />
               Доходы ПВЗ
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('pvz-revenue')}>
+            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-revenue')}>
               <TrendingDownIcon className="sidebarIcon" />
               Расходы
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('pvz-revenue')}>
+            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-revenue')}>
               <CurrencyRubleIcon className="sidebarIcon" />
               Бухгалтерия
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('users')}>
+            {sessionStorage.getItem('user_role') === 'owner' ?
+            <li className="sidebarListItem" onClick={() => navigate('/own/users')}>
               <GroupIcon className="sidebarIcon" />
               Сотрудники
-            </li>
-            <li className="sidebarListItem" onClick={() => navigate('pvz-revenue')}>
+            </li> : null }
+            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-revenue')}>
               <LocalGroceryStoreIcon className="sidebarIcon" />
               Магазин
             </li>

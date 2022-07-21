@@ -12,9 +12,9 @@ const LogoutButton = () => {
   const logoutUser = async () => {
     try {
       const response = await AuthService.logout();
-      console.log(response)
       localStorage.removeItem('token');
-      localStorage.removeItem('user_email')
+      sessionStorage.removeItem('user_email')
+      sessionStorage.removeItem('user_role')
       dispatch(logoutUserAction())
       navigate('/')
     } catch (e) {

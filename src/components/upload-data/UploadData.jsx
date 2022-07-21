@@ -4,7 +4,7 @@ import './upload-data.css'
 const UploadData = () => {
   return (
     <div className='account'>
-      Грузи сюда
+      <p>Грузи сюда</p>
     </div>
   );
 };
