@@ -4,7 +4,10 @@ import './home.css'
 const Home = () => {
   return (
     <div className='account'>
-      <p>Общая статистика</p>
+      <p>
+        Статистика по пунктам выдачи:
+      </p>
+
     </div>
   );
 };

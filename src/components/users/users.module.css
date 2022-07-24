@@ -7,3 +7,58 @@
   margin: 20px;
 }
 
+.header_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.title {
+  text-align: center;
+}
+
+.add_user {
+  display: flex;
+  order: 1;
+  width: 50%;
+  position: center;
+}
+
+.delete_user {
+  order: 2;
+  width: 50%;
+}
+
+.form__title {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #333;
+}
+
+.form__input {
+  width: 80%;
+  border: solid 1px #333;
+  font-size: inherit;
+}
+
+.form__btn {
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  background-color: #03a9f4;
+  color: #fff;
+  padding: 10px 50px;
+  width: 80%;
+  margin-top: 5px;
+}
+
+.form__dlt__btn {
+  border: none;
+  cursor: pointer;
+  font-size: inherit;
+  background-color: #f43648;
+  color: #fff;
+  padding: 10px 50px;
+  width: 80%;
+  margin-top: 5px;
+}

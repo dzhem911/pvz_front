@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import {loginUserAction} from "../../redux/userReducer";
+import Loader from "../../loader/Loader";
 
 const Registration = () => {
 
@@ -14,20 +15,22 @@ const Registration = () => {
   const [companyName, setCompanyName] = useState('')
   const [password, setPassword] = useState('')
   const [confirmedPassword, setConfirmedPassword] = useState('')
+  const [loader, setLoader] = useState(false)
 
   const dispatch = useDispatch()
   let navigate = useNavigate()
 
   const registerUser = async (e) => {
     e.preventDefault()
+    setLoader(true)
     try {
-      const regis = await AuthService.registration(firstName, lastName, phoneNumber, email, companyName, password);
-      console.log(regis)
+      await AuthService.registration(firstName, lastName, phoneNumber, email, companyName, password);
       const response = await AuthService.login(email, password);
       localStorage.setItem('token', response.data.accessToken);
       sessionStorage.setItem('user_email', response.data.user.email);
       sessionStorage.setItem('user_role', response.data.user.role);
       dispatch(loginUserAction(response.data.user))
+      setLoader(false)
       navigate('/account')
     } catch (e) {
       console.log(e.response?.data?.message);
@@ -35,7 +38,8 @@ const Registration = () => {
   }
 
   return (
-    <form className={`${loginFormStyle.form} ${loginFormStyle.form_signup}`} onSubmit={registerUser}>
+    loader ? <Loader/>
+    : <form className={`${loginFormStyle.form} ${loginFormStyle.form_signup}`} onSubmit={registerUser}>
       <h3 className={loginFormStyle.form__title}>Регистрация</h3>
       <p>
         <input className={loginFormStyle.form__input}
@@ -82,10 +86,11 @@ const Registration = () => {
       </p>
       <p>
         <input className={loginFormStyle.form__input}
-               onChange={e => setPassword(e.target.value)}
-               value={password}
+               onChange={e => setConfirmedPassword(e.target.value)}
+               value={confirmedPassword}
                type='password'
                placeholder='Подтвердите пароль' />
+        {password === confirmedPassword ? 'Все ок' : 'Пароли не сходятся'}
       </p>
       <p>
         <button className={`${loginFormStyle.form__btn} ${loginFormStyle.form__btn_signup}`}>Зарегистрироваться</button>

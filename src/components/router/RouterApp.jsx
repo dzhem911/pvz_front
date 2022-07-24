@@ -12,6 +12,7 @@ import Registration from "../registration/Registration";
 import PrivateRouteOwner from "./PrivateRouteOwner";
 import RefreshPassword from "../refreshPassword/RefreshPassword";
 import TopBar from "../topbar/TopBar";
+import AccountSettings from "../account-settings/AccountSettings";
 
 const RouterApp = () => {
   return (
@@ -21,9 +22,9 @@ const RouterApp = () => {
         <Route path='data-upload' element={<UploadData/>} />
         <Route path='pvz-list' element={<ListPVZ/>} />
         <Route path='pvz-revenue' element={<RevenuePVZ/>} />
-
+        <Route path='settings' element={<AccountSettings/>}/>
       </Route>
-      <Route path='/own' element={<PrivateRouteOwner/>}>
+      <Route path='/own' element={<><TopBar/><PrivateRouteOwner/></>}>
         <Route path='users' element={<Users/>} />
       </Route>
       <Route path='/' element={<MainPage/>}/>

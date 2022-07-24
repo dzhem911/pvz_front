@@ -21,4 +21,8 @@ export default class AuthService {
   static async refreshPassword(email) {
     return $api.post('/refreshpassword', {email})
   }
+
+  static async deleteUser(email) {
+    return $api.post('/deleteuser', {email})
+  }
 }

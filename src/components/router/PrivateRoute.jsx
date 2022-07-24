@@ -4,7 +4,7 @@ import './account.css'
 import SideBar from "../sideBar/SideBar";
 import axios from "axios";
 import {API_URL} from "../../https";
-import {loginUserAction, logoutUserAction} from "../../redux/userReducer";
+import {logoutUserAction} from "../../redux/userReducer";
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
 import AuthService from "../../services/AuthService";
@@ -17,7 +17,6 @@ const PrivateRoute = () => {
     try {
       const response = await axios.get(`${API_URL}/refresh`, {withCredentials: true })
       localStorage.setItem('token', response.data.accessToken);
-      dispatch(loginUserAction(response.data.user))
     } catch (e) {
       console.log(e.response?.data?.message);
     }
@@ -27,7 +26,7 @@ const PrivateRoute = () => {
 
   const logoutUser = async () => {
     try {
-      const response = await AuthService.logout();
+      await AuthService.logout();
       localStorage.removeItem('token');
       sessionStorage.removeItem('user_email')
       sessionStorage.removeItem('user_role')
@@ -46,7 +45,7 @@ const PrivateRoute = () => {
     if(localStorage.getItem('token')) {
       await checkAuth()
     }
-  })())
+  })(), [])
 
   return (localStorage.getItem('token') ?
     <div className='container'>

@@ -14,6 +14,11 @@ const Sidebar = () => {
 
   const navigate = useNavigate()
 
+  const myHandler = (path, e ) => {
+    e.target.classList.add('active')
+    navigate(path)
+  }
+
   return (
     <div className='sidebar'>
       <div className="sidebarWrapper">
@@ -23,7 +28,7 @@ const Sidebar = () => {
               <HomeIcon className="sidebarIcon" />
               Сводка
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('/account/data-upload')}>
+            <li className="sidebarListItem" onClick={(e) => myHandler('/account/data-upload', e)}>
               <CloudUploadIcon className="sidebarIcon" />
               Загрузка данных
             </li>
@@ -52,7 +57,7 @@ const Sidebar = () => {
               <LocalGroceryStoreIcon className="sidebarIcon" />
               Магазин
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('pvz-revenue')}>
+            <li className="sidebarListItem" onClick={() => navigate('/account/settings')}>
               <SettingsIcon className="sidebarIcon" />
               Настройки Avis
             </li>
