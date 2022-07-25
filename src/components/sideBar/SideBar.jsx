@@ -24,48 +24,43 @@ const Sidebar = () => {
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <ul className="sidebarList">
-            {/*<li className="sidebarListItem active">*/}
-              <NavLink className="sidebarListItem active" to='/account'>
-                <HomeIcon className="sidebarIcon" />
-                Сводка
-              </NavLink>
-            {/*</li>*/}
-            {/*<li className="sidebarListItem">*/}
-
-              <NavLink className="sidebarListItem" to='/account/data-upload' >
-            <CloudUploadIcon className="sidebarIcon" />
-            Загрузка данных
-              </NavLink>
-            {/*</li>*/}
-            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-list')}>
+            <NavLink className="sidebarListItem active" to='/account'>
+              <HomeIcon className="sidebarIcon" />
+              Сводка
+            </NavLink>
+            <NavLink className="sidebarListItem" to='/account/data-upload'>
+              <CloudUploadIcon className="sidebarIcon" />
+              Загрузка данных
+            </NavLink>
+            <NavLink className="sidebarListItem" to='/account/pvz-list'>
               <ListAltIcon className="sidebarIcon" />
               Список ПВЗ
-            </li>
-            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-revenue')}>
+            </NavLink>
+            <NavLink className="sidebarListItem" to='/account/pvz-revenue'>
               <TrendingUpIcon className="sidebarIcon" />
               Доходы ПВЗ
-            </li>
-            <li className="sidebarListItem">
+            </NavLink>
+            <NavLink className="sidebarListItem" to='/account/data-upload' >
               <TrendingDownIcon className="sidebarIcon" />
               Расходы
-            </li>
-            <li className="sidebarListItem">
+            </NavLink>
+            <NavLink className="sidebarListItem" to='/account/data-upload' >
               <CurrencyRubleIcon className="sidebarIcon" />
               Бухгалтерия
-            </li>
+            </NavLink>
             {sessionStorage.getItem('user_role') === 'owner' ?
-            <li className="sidebarListItem" onClick={() => navigate('/own/users')}>
+            <NavLink className="sidebarListItem" to='/own/users' >
               <GroupIcon className="sidebarIcon" />
               Сотрудники
-            </li> : null }
-            <li className="sidebarListItem">
+            </NavLink> : null }
+            <NavLink className="sidebarListItem" to='/account/settings'>
               <LocalGroceryStoreIcon className="sidebarIcon" />
               Магазин
-            </li>
-            <li className="sidebarListItem" onClick={() => navigate('/account/settings')}>
+            </NavLink>
+            <NavLink className="sidebarListItem" to='/account/settings' >
               <SettingsIcon className="sidebarIcon" />
               Настройки Avis
-            </li>
+            </NavLink>
           </ul>
         </div>
       </div>
