@@ -6,6 +6,7 @@ export const API_URL = 'https://analytic-avista.herokuapp.com/api'
 const $api = axios.create({
   withCredentials: true,
   baseURL: API_URL,
+  headers: {"Content-type": "application/json"}
 })
 
 $api.interceptors.request.use((config) => {
@@ -22,7 +23,7 @@ $api.interceptors.response.use((config) => {
     originalRequest._isRetry = true;
     try{
       const response = await axios.get(`${API_URL}/refresh`, {withCredentials: true })
-      localStorage.setItem('token', response.data.accessToken)
+      localStorage.setItem('token', response.data?.accessToken)
       return $api.request(originalRequest)
     } catch (e) {
       console.log('Не авторизован! - ', e)
