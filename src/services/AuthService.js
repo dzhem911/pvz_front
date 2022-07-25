@@ -2,6 +2,10 @@ import $api from "../https";
 
 export default class AuthService {
 
+  static async refresh(refreshToken) {
+    return $api.post('/refresh', {refreshToken})
+  }
+
   static async login(email, password) {
     return $api.post('/login', {email, password})
   }
