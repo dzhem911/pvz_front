@@ -29,7 +29,6 @@ const ListPvz = () => {
   useEffect(() => (async () => {
     await memoSetUsers()
   })(), [])
-  console.log(companies)
 
   const addPVZ = async (e) => {
     e.preventDefault()
