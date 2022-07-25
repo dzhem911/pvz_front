@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-export const API_URL = 'http://localhost:5001/api'
+export const API_URL = 'https://avista-analytic.herokuapp.com/api'
+// export const API_URL = 'http://localhost:5001/api'
 
 const $api = axios.create({
   withCredentials: true,
