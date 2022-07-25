@@ -24,7 +24,7 @@ const Sidebar = () => {
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <ul className="sidebarList">
-            <li className="sidebarListItem active" onClick={() => navigate('/account')}>
+            <li className="sidebarListItem active" onClick={navigate('/account')}>
               <HomeIcon className="sidebarIcon" />
               Сводка
             </li>
