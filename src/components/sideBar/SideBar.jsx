@@ -24,16 +24,19 @@ const Sidebar = () => {
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <ul className="sidebarList">
-            <li className="sidebarListItem active">
-              <HomeIcon className="sidebarIcon" />
-              <NavLink to='/account' />
-              Сводка
-            </li>
-            <li className="sidebarListItem">
-              <CloudUploadIcon className="sidebarIcon" />
-              <NavLink to='/account/data-upload' />
-              Загрузка данных
-            </li>
+            {/*<li className="sidebarListItem active">*/}
+              <NavLink className="sidebarListItem active" to='/account'>
+                <HomeIcon className="sidebarIcon" />
+                Сводка
+              </NavLink>
+            {/*</li>*/}
+            {/*<li className="sidebarListItem">*/}
+
+              <NavLink className="sidebarListItem" to='/account/data-upload' >
+            <CloudUploadIcon className="sidebarIcon" />
+            Загрузка данных
+              </NavLink>
+            {/*</li>*/}
             <li className="sidebarListItem" onClick={() => navigate('/account/pvz-list')}>
               <ListAltIcon className="sidebarIcon" />
               Список ПВЗ
