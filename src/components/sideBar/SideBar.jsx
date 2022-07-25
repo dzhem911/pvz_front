@@ -40,24 +40,24 @@ const Sidebar = () => {
               <TrendingUpIcon className="sidebarIcon" />
               Доходы ПВЗ
             </NavLink>
-            <NavLink className="sidebarListItem"  >
+            <NavLink className="sidebarListItem" to='/account/expenses' >
               <TrendingDownIcon className="sidebarIcon" />
               Расходы
             </NavLink>
-            <NavLink className="sidebarListItem"  >
+            <NavLink className="sidebarListItem" to='/account/accounting' >
               <CurrencyRubleIcon className="sidebarIcon" />
               Бухгалтерия
             </NavLink>
             {sessionStorage.getItem('user_role') === 'owner' ?
-            <NavLink className="sidebarListItem" to='/own/users' >
+            <><NavLink className="sidebarListItem" to='/own/users' >
               <GroupIcon className="sidebarIcon" />
               Сотрудники
-            </NavLink> : null }
-            <NavLink className="sidebarListItem" to='/account/settings'>
+            </NavLink>
+            <NavLink className="sidebarListItem" to='/own/store'>
               <LocalGroceryStoreIcon className="sidebarIcon" />
               Магазин
-            </NavLink>
-            <NavLink className="sidebarListItem"  >
+            </NavLink> </>: null }
+            <NavLink className="sidebarListItem" to='/account/settings' >
               <SettingsIcon className="sidebarIcon" />
               Настройки Avis
             </NavLink>
