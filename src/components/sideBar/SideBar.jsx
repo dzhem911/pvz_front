@@ -40,11 +40,11 @@ const Sidebar = () => {
               <TrendingUpIcon className="sidebarIcon" />
               Доходы ПВЗ
             </NavLink>
-            <NavLink className="sidebarListItem" to='/account/data-upload' >
+            <NavLink className="sidebarListItem"  >
               <TrendingDownIcon className="sidebarIcon" />
               Расходы
             </NavLink>
-            <NavLink className="sidebarListItem" to='/account/data-upload' >
+            <NavLink className="sidebarListItem"  >
               <CurrencyRubleIcon className="sidebarIcon" />
               Бухгалтерия
             </NavLink>
@@ -57,7 +57,7 @@ const Sidebar = () => {
               <LocalGroceryStoreIcon className="sidebarIcon" />
               Магазин
             </NavLink>
-            <NavLink className="sidebarListItem" to='/account/settings' >
+            <NavLink className="sidebarListItem"  >
               <SettingsIcon className="sidebarIcon" />
               Настройки Avis
             </NavLink>
