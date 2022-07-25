@@ -38,14 +38,14 @@ const PrivateRoute = () => {
     }
   }
 
-  useEffect(() => (async ()=> {
-    if((JSON.parse(atob(localStorage.getItem("refresh").split(".")[1])).exp * 1000) < Date.now()) {
-      logoutUser()
-    }
-    if(localStorage.getItem('token')) {
-      await checkAuth()
-    }
-  })(), [])
+  // useEffect(() => (async ()=> {
+  //   if((JSON.parse(atob(localStorage.getItem("refresh").split(".")[1])).exp * 1000) < Date.now()) {
+  //     logoutUser()
+  //   }
+  //   if(localStorage.getItem('token')) {
+  //     await checkAuth()
+  //   }
+  // })(), [])
 
   return (localStorage.getItem('token') ?
     <div className='container'>
