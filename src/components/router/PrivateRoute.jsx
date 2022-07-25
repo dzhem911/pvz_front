@@ -15,7 +15,7 @@ const PrivateRoute = () => {
 
   async function checkAuth() {
     try {
-      const response = AuthService.refresh(localStorage.getItem('refresh'))//await axios.get(`${API_URL}/refresh`, {withCredentials: true })
+      const response = AuthService.refresh(localStorage.getItem('token'))//await axios.get(`${API_URL}/refresh`, {withCredentials: true })
       localStorage.setItem('token', response.data.accessToken);
     } catch (e) {
       console.log(e.response?.data?.message);
