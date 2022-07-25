@@ -40,11 +40,11 @@ const Sidebar = () => {
               <TrendingUpIcon className="sidebarIcon" />
               Доходы ПВЗ
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-revenue')}>
+            <li className="sidebarListItem">
               <TrendingDownIcon className="sidebarIcon" />
               Расходы
             </li>
-            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-revenue')}>
+            <li className="sidebarListItem">
               <CurrencyRubleIcon className="sidebarIcon" />
               Бухгалтерия
             </li>
@@ -53,7 +53,7 @@ const Sidebar = () => {
               <GroupIcon className="sidebarIcon" />
               Сотрудники
             </li> : null }
-            <li className="sidebarListItem" onClick={() => navigate('/account/pvz-revenue')}>
+            <li className="sidebarListItem">
               <LocalGroceryStoreIcon className="sidebarIcon" />
               Магазин
             </li>
