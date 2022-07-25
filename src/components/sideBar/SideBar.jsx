@@ -8,7 +8,7 @@ import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
 import GroupIcon from '@mui/icons-material/Group';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 const Sidebar = () => {
 
@@ -24,12 +24,14 @@ const Sidebar = () => {
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <ul className="sidebarList">
-            <li className="sidebarListItem active" onClick={navigate('/account')}>
+            <li className="sidebarListItem active">
               <HomeIcon className="sidebarIcon" />
+              <NavLink to='/account' />
               Сводка
             </li>
-            <li className="sidebarListItem" onClick={(e) => myHandler('/account/data-upload', e)}>
+            <li className="sidebarListItem">
               <CloudUploadIcon className="sidebarIcon" />
+              <NavLink to='/account/data-upload' />
               Загрузка данных
             </li>
             <li className="sidebarListItem" onClick={() => navigate('/account/pvz-list')}>
