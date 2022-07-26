@@ -15,7 +15,7 @@ const PrivateRoute = () => {
 
   async function checkAuth() {
     try {
-      const response = AuthService.refresh(localStorage.getItem('token'))//await axios.get(`${API_URL}/refresh`, {withCredentials: true })
+      const response = AuthService.refresh(localStorage.getItem('refresh'))//await axios.get(`${API_URL}/refresh`, {withCredentials: true })
       localStorage.setItem('token', response.data.accessToken);
     } catch (e) {
       console.log(e.response?.data?.message);
@@ -38,14 +38,16 @@ const PrivateRoute = () => {
     }
   }
 
-  // useEffect(() => (async ()=> {
-  //   if((JSON.parse(atob(localStorage.getItem("refresh").split(".")[1])).exp * 1000) < Date.now()) {
-  //     logoutUser()
-  //   }
-  //   if(localStorage.getItem('token')) {
-  //     await checkAuth()
-  //   }
-  // })(), [])
+  useEffect(() => {
+    async function letsgo() {
+      if((JSON.parse(atob(localStorage.getItem("refresh").split(".")[1])).exp * 1000) < Date.now()) {
+        logoutUser()
+      }
+      // if(localStorage.getItem('token')) {
+      //   await checkAuth()
+      // }
+    } letsgo()
+  }, [])
 
   return (localStorage.getItem('token') ?
     <div className='container'>

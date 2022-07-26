@@ -15,10 +15,6 @@ const Sidebar = () => {
 
   const navigate = useNavigate()
 
-  const myHandler = (path, e ) => {
-    e.target.classList.add('active')
-    navigate(path)
-  }
 
   return (
     <div className='sidebar'>

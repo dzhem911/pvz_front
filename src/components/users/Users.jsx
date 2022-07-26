@@ -26,9 +26,12 @@ const Users = () => {
     setUsers(filterResponse)
   }, [setUsers])
 
-  useEffect(() => (async () => {
+  useEffect(() => {
+    async function letsgo () {
     await memoSetUsers()
-  })(), [memoSetUsers])
+  }
+  letsgo()
+  }, [memoSetUsers])
 
   const addNewUser = async (e) => {
     e.preventDefault()
