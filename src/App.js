@@ -7,10 +7,10 @@ import './app.css'
 function App() {
   return (
     <>
-      <BrowserRouter>
+      {/*<BrowserRouter>*/}
         <RouterApp/>
         <LogoutButton/>
-      </BrowserRouter>
+      {/*</BrowserRouter>*/}
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import Error from "../error/Error";
 import MainPage from "../main/MainPage";
 import PrivateRoute from "./PrivateRoute";
@@ -19,6 +19,7 @@ import Expenses from "../expenses/Expenses";
 
 const RouterApp = () => {
   return (
+    <BrowserRouter>
     <Routes>
       <Route path='/account' element={<><TopBar/><PrivateRoute/></>}>
         <Route path='' element={<Home/>} />
@@ -39,6 +40,7 @@ const RouterApp = () => {
       <Route path='/error-page' element={<Error/>}/>
       <Route path='*' element={<Navigate to='/error-page' replace />}/>
     </Routes>
+    </BrowserRouter>
   )
 };
 
