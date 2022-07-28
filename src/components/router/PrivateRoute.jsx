@@ -15,7 +15,7 @@ const PrivateRoute = () => {
 
   async function checkAuth() {
     try {
-      const response = AuthService.refresh(localStorage.getItem('refresh'))//await axios.get(`${API_URL}/refresh`, {withCredentials: true })
+      const response = await axios.get(`${API_URL}/refresh`, {withCredentials: true,  })
       localStorage.setItem('token', response.data.accessToken);
     } catch (e) {
       console.log(e.response?.data?.message);
@@ -27,10 +27,10 @@ const PrivateRoute = () => {
   const logoutUser = async () => {
     try {
       await AuthService.logout();
+      localStorage.removeItem('refresh');
       localStorage.removeItem('token');
       sessionStorage.removeItem('user_email')
       sessionStorage.removeItem('user_role')
-      sessionStorage.removeItem('refresh')
       dispatch(logoutUserAction())
       navigate('/')
     } catch (e) {

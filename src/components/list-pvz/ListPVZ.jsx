@@ -31,7 +31,7 @@ const ListPvz = () => {
       await memoSetUsers()
     }
     letsgo()
-  }, [companies])
+  }, [])
 
   const addPVZ = async (e) => {
     e.preventDefault()

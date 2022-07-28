@@ -8,13 +8,10 @@ import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
 import GroupIcon from '@mui/icons-material/Group';
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import SettingsIcon from '@mui/icons-material/Settings';
-import {NavLink, useNavigate} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import React from 'react'
 
 const Sidebar = () => {
-
-  const navigate = useNavigate()
-
 
   return (
     <div className='sidebar'>
