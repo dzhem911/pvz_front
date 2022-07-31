@@ -28,7 +28,7 @@ const LoginForm = () => {
   }
 
   return (
-    <form className={`${loginFormStyle.form} ${loginFormStyle.form_signin}`} onSubmit={loginUser}>
+    <form onSubmit={loginUser}>
       <h3 className={loginFormStyle.form__title}>Вход</h3>
       <p>
         <input className={loginFormStyle.form__input} onChange={e => setEmail(e.target.value)} value={email} type='text' placeholder='Email' />

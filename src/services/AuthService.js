@@ -14,8 +14,8 @@ export default class AuthService {
     return $api.post('/reguser', {firstName, lastName, phoneNumber, email, founderEmail})
   }
 
-  static async logout() {
-    return $api.post('/logout')
+  static async logout(refreshToken) {
+    return $api.post('/logout', {refreshToken})
   }
 
   static async refreshPassword(email) {

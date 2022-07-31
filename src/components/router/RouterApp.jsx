@@ -20,7 +20,7 @@ import Expenses from "../expenses/Expenses";
 const RouterApp = () => {
   return (
     <Routes>
-      <Route path='/account' element={<><TopBar/><PrivateRoute/></>}>
+      <Route path='/account' element={<><PrivateRoute/></>}>
         <Route path='' element={<Home/>} />
         <Route path='data-upload' element={<UploadData/>} />
         <Route path='pvz-list' element={<ListPVZ/>} />
@@ -29,7 +29,7 @@ const RouterApp = () => {
         <Route path='accounting' element={<Accounting/>}/>
         <Route path='settings' element={<AccountSettings/>}/>
       </Route>
-      <Route path='/own' element={<><TopBar/><PrivateRouteOwner/></>}>
+      <Route path='/own' element={<><PrivateRouteOwner/></>}>
         <Route path='users' element={<Users/>} />
         <Route path='store' element={<Store/>} />
       </Route>

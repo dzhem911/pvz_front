@@ -11,7 +11,7 @@ const LogoutButton = () => {
 
   const logoutUser = async () => {
     try {
-      const response = await AuthService.logout();
+      const response = await AuthService.logout(localStorage.getItem('refresh'));
       localStorage.removeItem('token');
       sessionStorage.removeItem('user_email')
       sessionStorage.removeItem('user_role')
