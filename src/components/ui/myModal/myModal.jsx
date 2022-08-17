@@ -1,16 +1,24 @@
 import React from 'react';
 import modalStyle from './modal.module.css'
 
-const MyModal = ({children, visible, setVisible, setStep}) => {
+const MyModal = ({children, visible, setVisible, setStep, setSignInVisible, signInVisible, step}) => {
 
   const rootClasses = [modalStyle.myModal]
-  if(visible) {
+  if(visible || signInVisible) {
     rootClasses.push(modalStyle.active)
   }
 
   const clickHandler = () => {
-    setVisible(false)
-    setStep(false)
+    if(visible) {
+      setVisible(false)
+    }
+    if(signInVisible){
+      setSignInVisible(false)
+    }
+    if(step) {
+      setStep(false)
+    }
+
   }
 
   return (

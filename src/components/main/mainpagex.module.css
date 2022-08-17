@@ -1,0 +1,30 @@
+.title {
+  font-size: 42px;
+  font-weight: 400;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  width: 575px;
+  margin: 32px auto;
+  line-height: 42px;
+  color: #4F4F4F;
+}
+.description {
+  display: flex;
+  justify-content: center;
+  font-family: "Open Sans";
+  font-size: 24px;
+  line-height: 26px;
+  color: #4F4F4F;
+  height: 52px;
+}
+
+.toggle_button_group {
+  width: 40%;
+}
+
+.toggle_button_group__item {
+  flex: 1;
+  border: 1px solid #007EE2;
+  color: rgba(15, 10, 222, 1);
+}
