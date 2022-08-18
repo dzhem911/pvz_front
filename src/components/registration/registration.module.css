@@ -54,8 +54,8 @@
 }
 
 .contact_input {
-  width: 320px;
-  padding: 8px 0;
+  width: 316px;
+  padding: 8px 4px;
   border: solid 1px #AAA;
   font-size: inherit;
   border-radius: 4px;
@@ -63,12 +63,12 @@
 }
 
 .invalided_input {
-  width: 320px;
-  padding: 8px 0;
+  width: 316px;
+  padding: 8px 4px;
   border: 2px solid #ff7d87;
   box-shadow: none;
   font-size: inherit;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
 .input_label {
@@ -187,10 +187,10 @@
 }
 
 .hint {
-  text-align: center;
+  margin: 0;
+  padding: 0;
+  height: 12px;
   font-size: 12px;
   color: #FF4850;
-  border-radius:0 4px 4px 0;
   transition: opacity 0.3s;
-  margin-top: 2px;
 }

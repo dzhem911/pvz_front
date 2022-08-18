@@ -6,6 +6,8 @@ import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { styled } from '@mui/system';
+import {useField} from "formik";
+import registrationStyle from '../registration/registration.module.css'
 
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
@@ -38,6 +40,7 @@ const StyledInputElement = styled('input')(
   outline: 0;
   width: 320px;
   height: inherit;
+  
 `,
 );
 
@@ -85,17 +88,16 @@ CustomInput.propTypes = {
   }),
 };
 
-export default function InputAdornments() {
+export default function InputAdornments(props) {
   const [values, setValues] = React.useState({
-    amount: '',
     password: '',
-    weight: '',
-    weightRange: '',
     showPassword: false,
   });
+  const [field, meta] = useField(props);
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
+    props.setValuePassword(event.target.value)
   };
 
   const handleClickShowPassword = () => {
@@ -110,12 +112,15 @@ export default function InputAdornments() {
   };
 
   return (
-    <Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }} >
+    <article className={registrationStyle.wrapper_center}>
+    {/*<Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }} >*/}
+      <p className={registrationStyle.input_label}>{props.label}</p>
       <CustomInput
-        id="outlined-adornment-password"
+
         type={values.showPassword ? 'text' : 'password'}
         value={values.password}
         onChange={handleChange('password')}
+        {...field}
         endAdornment={
           <InputAdornment>
             <IconButton
@@ -128,6 +133,8 @@ export default function InputAdornments() {
           </InputAdornment>
         }
       />
-    </Box>
+        <div className={registrationStyle.hint}>{ meta.touched && meta.error ? meta.error : null}</div>
+    {/*</Box>*/}
+  </article>
   );
 }
