@@ -1,4 +1,3 @@
-
 const LOADER_ON = 'LOADER_ON'
 const LOADER_OFF = 'LOADER_OFF'
 

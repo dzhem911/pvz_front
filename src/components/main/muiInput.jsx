@@ -36,10 +36,11 @@ const StyledInputElement = styled('input')(
   ({ theme }) => `
   border: none;
   border-radius: inherit;
-  padding: 12px 12px;
+  padding: 10px 4px;
   outline: 0;
   width: 320px;
   height: inherit;
+  font-size: 16px;
   
 `,
 );

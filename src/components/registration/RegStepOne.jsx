@@ -7,7 +7,7 @@ import MuiToggleButton from "@mui/material/ToggleButton";
 import MuiToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import styled from "@emotion/styled";
 
-const MyTextInput = ({ label, ...props }) => {
+export const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
     <article className={registrationStyle.wrapper_center}>
@@ -35,8 +35,12 @@ const StyledErrorMessage = styled.div`
 
 const StyledSelect = styled.select`
   display: flex;
-  width: 320px;
+  width: 326px;
   padding: 8px 4px;
+  border-radius: 4px;
+  box-shadow: 0px 1px 1px rgb(0 0 0 / 5%), 0px 1px 3px rgb(0 0 0 / 16%);
+  border: solid 1px #AAA;
+  font-size: inherit;
 `;
 
 const MySelect = ({ label, ...props }) => {
@@ -161,4 +165,3 @@ export const RegStepTwo = (props) => {
     </>
   );
 };
-

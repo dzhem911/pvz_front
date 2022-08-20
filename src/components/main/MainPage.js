@@ -1,15 +1,17 @@
 import React, {useState} from 'react';
 import LoginForm from "./LoginForm";
 import mainPageStyleX from './mainpagex.module.css'
-import MyModal from "../ui/myModal/myModal";
+import MyModal from "../UI/myModal/myModal";
 import MuiToggleButtonGroup from "@mui/material/ToggleButtonGroup"
 import MuiToggleButton from "@mui/material/ToggleButton";
 import { styled as styledX} from '@mui/material/styles'
 import Registration from "../registration/Registration";
+import ResetPasswordForm from "./resetPassword/ResetPasswordForm";
 
 const MainPage = () => {
   const [modal, setModal] = useState(false)
   const [signInModal, setSignInModal] = useState(false)
+  const [pasResetModal, setPasResetModal] = useState(false)
   const [nextPage, setNextPage] = useState(false)
   const [currentToggle, setCurrentToggle] = useState('Регистрация')
 
@@ -34,8 +36,8 @@ const MainPage = () => {
   return (
     <>
     <div>
-      <span className={mainPageStyleX.title}>Аналитический сервис для пунктов выдачи заказов</span>
-      <span className={mainPageStyleX.description}>Статистика и контроль результатов вашего бизнеса</span>
+      <span className={mainPageStyleX.title}>Аналитический сервис<br/> для пунктов выдачи заказов</span>
+      <span className={mainPageStyleX.description}>Статистика и контроль результатов<br/> вашего бизнеса</span>
       <ToggleButtonGroupX className={mainPageStyleX.toggle_button_group}
                          color='primary'
                          exclusive
@@ -59,7 +61,10 @@ const MainPage = () => {
         <Registration/>
       </MyModal>
       <MyModal signInVisible={signInModal} setSignInVisible={setSignInModal}>
-        <LoginForm/>
+        <LoginForm setSignInVisible={setSignInModal} setVisible={setModal} setPasResetModal={setPasResetModal} />
+      </MyModal>
+      <MyModal pasResetModal={pasResetModal} setPasResetModal={setPasResetModal}>
+        <ResetPasswordForm setSignInVisible={setSignInModal} setPasResetModal={setPasResetModal} />
       </MyModal>
     </div>
     </>

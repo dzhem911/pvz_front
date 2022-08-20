@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import {loginUserAction} from "../../redux/userReducer";
-import Loader from "../../loader/Loader";
+import Loader from "../UI/loader/Loader";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {Formik} from "formik";
 import * as Yup from "yup";
@@ -19,11 +19,12 @@ const Registration = () => {
   const [companyName, setCompanyName] = useState('')
   const [password, setPassword] = useState('')
   const [loader, setLoader] = useState(false)
+  const [currentToggle, setCurrentToggle] = useState('ООО')
+  const [ITN, setITN] = useState('')
 
   const [nextPage, setNextPage] = useState(false)
   const [nextPageX, setNextPageX] = useState(false)
-  const [currentToggle, setCurrentToggle] = useState('ООО')
-  const [ITN, setITN] = useState('')
+
 
   const valuesFirstStep = {
     firstName: '',
@@ -59,7 +60,8 @@ const Registration = () => {
       .min(4, "Напишите фамилию, имя и отчество без сокращений")
       .required("Обязательное поле"),
     ITN: Yup.number()
-      .min(10, "Введите корректный ИНН")
+      .typeError('Введите корректный ИНН')
+      .test('len', 'ИНН юр. лица состоит из 10 цифр', val => val.toString().length >= 10)
       .required("Обязательное поле"),
   })
 
@@ -148,8 +150,8 @@ const Registration = () => {
                 onSubmit={async (values, { setSubmitting }) => {
                   await new Promise(r => setTimeout(r, 500));
                   setSubmitting(false);
-                  setCompanyName(values.companyName)
-                  setITN(values.ITN)
+                  await setCompanyName(values.companyName)
+                  await setITN(values.ITN)
                   await regUser()
                 }}
               />

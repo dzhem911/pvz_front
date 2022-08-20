@@ -1,10 +1,10 @@
 import React from 'react';
 import modalStyle from './modal.module.css'
 
-const MyModal = ({children, visible, setVisible, setStep, setSignInVisible, signInVisible, step}) => {
+const MyModal = ({children, visible, setVisible, setStep, setSignInVisible, signInVisible, step, pasResetModal, setPasResetModal}) => {
 
   const rootClasses = [modalStyle.myModal]
-  if(visible || signInVisible) {
+  if(visible || signInVisible || pasResetModal) {
     rootClasses.push(modalStyle.active)
   }
 
@@ -18,7 +18,9 @@ const MyModal = ({children, visible, setVisible, setStep, setSignInVisible, sign
     if(step) {
       setStep(false)
     }
-
+    if(pasResetModal) {
+      setPasResetModal(false)
+    }
   }
 
   return (

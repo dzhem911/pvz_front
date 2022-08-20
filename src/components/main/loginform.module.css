@@ -23,8 +23,8 @@
 }
 
 .block_item__title {
-  /*font-family: 'PT Sans Caption';*/
-  font-size: 1.25rem;
+  margin: 24px 0;
+  font-size: 32px;
   font-weight: 400;
   font-style: normal;
   display: flex;
@@ -41,4 +41,28 @@
   background-color: #007EE2;
   color: #fff;
   padding: 8px 0;
+  margin: 24px 0;
+}
+
+.hint {
+  font-size: 12px;
+  color: #FF4850;
+  border-radius:0 4px 4px 0;
+  transition: opacity 0.3s;
+  margin-top: 2px;
+  height: 12px;
+}
+
+.login_footer {
+  margin: 24px;
+}
+
+.login_footer_quote {
+  margin: 8px;
+}
+
+.link {
+  color: #007EE2;
+  text-decoration: underline;
+  cursor: pointer;
 }
