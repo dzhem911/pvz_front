@@ -54,7 +54,7 @@
 }
 
 .contact_input {
-  width: 316px;
+  width: 312px;
   padding: 8px 4px;
   border: solid 1px #AAA;
   font-size: inherit;
@@ -63,7 +63,7 @@
 }
 
 .invalided_input {
-  width: 316px;
+  width: 312px;
   padding: 8px 4px;
   border: 2px solid #ff7d87;
   box-shadow: none;
