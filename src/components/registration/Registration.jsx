@@ -61,7 +61,7 @@ const Registration = () => {
       .required("Обязательное поле"),
     ITN: Yup.number()
       .typeError('Введите корректный ИНН')
-      .test('len', 'ИНН юр. лица состоит из 10 цифр', val => val && val.toString().length >= 10)
+      // .test('len', 'ИНН юр. лица состоит из 10 цифр', val => val && val.toString().length >= 10)
       .required("Обязательное поле"),
   })
 
