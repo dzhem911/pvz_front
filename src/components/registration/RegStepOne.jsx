@@ -89,6 +89,7 @@ export const RegStepOne = (props) => {
         <MyTextInput name='lastName' label='Фамилия' value={lastName} onChange={change.bind(null, "lastName")} />
         <MyTextInput name='email' label='Адрес почты' value={email} onChange={change.bind(null, "email")} />
         <InputAdornments name='password' label='Пароль' setValuePassword={setPassword} />
+        <div className={registrationStyle.reserve_area}>&nbsp;</div>
         <button type='submit' className={!isValid ? registrationStyle.next_btn : registrationStyle.reg_btn }>Продолжить</button>
       </Form>
 
@@ -159,6 +160,7 @@ export const RegStepTwo = (props) => {
           <option value="Управляющий сети ПВЗ">Управляющий сети ПВЗ</option>
           <option value="Руководитель">Руководитель</option>
         </MySelect>
+        <div className={registrationStyle.reserve_area}>&nbsp;</div>
         <button className={registrationStyle.reg_btn}  type='submit'>Зарегистрироваться</button>
       </Form>
 

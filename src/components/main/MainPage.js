@@ -27,11 +27,15 @@ const MainPage = () => {
   const ToggleButtonLeft = styledX(MuiToggleButton)({
     "&.Mui-selected": {
       color: "white",
+      textTransform: 'none',
+      fontSize: '16px',
       backgroundColor: '#007EE2',
     }
   });
   const ToggleButtonRight = styledX(MuiToggleButton)({
-    "&.Mui-selected": {}
+      textTransform: 'none',
+      fontSize: '16px',
+      color: '#007EE2'
   });
 
   const handleChange = (_, value) => {

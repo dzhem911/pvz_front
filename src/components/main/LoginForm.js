@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import {Form, Formik} from "formik";
 import InputAdornments from "./muiInput";
 import {MyTextInput} from "../registration/RegStepOne";
+import registrationStyle from "../registration/registration.module.css";
 
 const LoginForm = ({setSignInVisible, setVisible, setPasResetModal}) => {
 
@@ -78,6 +79,7 @@ const LoginForm = ({setSignInVisible, setVisible, setPasResetModal}) => {
                 type="email"
               />
               <InputAdornments name='password' label='Пароль' setValuePassword={setPassword} />
+              <div className={registrationStyle.reserve_area}>&nbsp;</div>
               <button className={loginFormStyle.sign_in_btn} type='submit'>Войти</button>
             </Form>
           </Formik>

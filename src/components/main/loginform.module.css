@@ -41,7 +41,7 @@
   background-color: #007EE2;
   color: #fff;
   padding: 8px 0;
-  margin: 24px 0;
+  margin-bottom: 24px;
 }
 
 .hint {
@@ -54,7 +54,7 @@
 }
 
 .login_footer {
-  margin: 24px;
+  margin: 16px;
 }
 
 .login_footer_quote {

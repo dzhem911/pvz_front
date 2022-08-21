@@ -8,6 +8,8 @@ import { styled } from '@mui/system';
 import {useField} from "formik";
 import registrationStyle from '../registration/registration.module.css'
 
+//box-shadow: 0px 1px 1px rgb(0 0 0 / 5%), 0px 1px 3px rgb(0 0 0 / 16%);
+
 const StyledInputRoot = styled('div')(
   ({ theme }) => `
   display: flex;
@@ -16,7 +18,8 @@ const StyledInputRoot = styled('div')(
   justify-content: center;
   width: 303px;
   border: 1px solid #AAA;
-  box-shadow: 0px 1px 1px rgb(0 0 0 / 5%), 0px 1px 3px rgb(0 0 0 / 16%);
+  
+  box-shadow: inset 1px 0px 0px #AAA, inset -1px 0px 0px #AAA, inset 0px -1px 0px #AAA, inset 0px 1px 0px #AAA;
   font-size: inherit;
   border-radius: 5px;
   margin: 0 auto;
@@ -25,7 +28,7 @@ const StyledInputRoot = styled('div')(
   &.${inputUnstyledClasses.focused} {
     width: 303px; 
     border: 1px solid #AAA;
-    box-shadow: 0px 1px 1px rgb(0 0 0 / 5%), 0px 1px 3px rgb(0 0 0 / 16%);
+    box-shadow: inset 1px 0px 0px #AAA, inset -1px 0px 0px #AAA, inset 0px -1px 0px #AAA, inset 0px 1px 0px #AAA;
     font-size: inherit;
     border-radius: 5px;
   }
@@ -35,8 +38,9 @@ const StyledInputRoot = styled('div')(
 const StyledInputElement = styled('input')(
   ({ theme }) => `
   border: none;
-  border-radius: inherit;
+  border-radius: 0;
   padding: 10px 4px;
+  box-shadow: inset 0px 0px 0px #FFF, inset 0px 0px 0px #FFF, inset 0px -1px 0px #AAA, inset 0px 1px 0px #AAA;
   outline: 0;
   width: 320px;
   height: inherit;

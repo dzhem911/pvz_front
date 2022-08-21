@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import resetPsw from './reset-password.module.css'
 import {MyTextInput} from "../../registration/RegStepOne";
 import AuthService from "../../../services/AuthService";
+import registrationStyle from "../../registration/registration.module.css";
 
 const ResetPasswordForm = ({setPasResetModal, setSignInVisible}) => {
 
@@ -45,6 +46,7 @@ const ResetPasswordForm = ({setPasResetModal, setSignInVisible}) => {
                   name="email"
                   type="email"
                 />
+                <div className={registrationStyle.reserve_area}>&nbsp;</div>
                 <button className={loginFormStyle.sign_in_btn} type='submit'>Отправить</button>
               </Form>
             </Formik>
