@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 import Visibility from '@mui/icons-material/Visibility';
@@ -15,15 +14,16 @@ const StyledInputRoot = styled('div')(
   font-weight: 500;
   align-items: center;
   justify-content: center;
-  width: 320px;
+  width: 303px;
   border: 1px solid #AAA;
   box-shadow: 0px 1px 1px rgb(0 0 0 / 5%), 0px 1px 3px rgb(0 0 0 / 16%);
   font-size: inherit;
   border-radius: 5px;
   margin: 0 auto;
+  padding: 0 8px;
 
   &.${inputUnstyledClasses.focused} {
-    width: 320px; 
+    width: 303px; 
     border: 1px solid #AAA;
     box-shadow: 0px 1px 1px rgb(0 0 0 / 5%), 0px 1px 3px rgb(0 0 0 / 16%);
     font-size: inherit;
@@ -113,8 +113,7 @@ export default function InputAdornments(props) {
   };
 
   return (
-    <article className={registrationStyle.wrapper_center}>
-    {/*<Box sx={{ display: 'flex', '& > * + *': { ml: 1 } }} >*/}
+    <article className={ meta.touched && meta.error ? registrationStyle.wrapper_centerX  : registrationStyle.wrapper_center} data-tooltip={meta.error}>
       <p className={registrationStyle.input_label}>{props.label}</p>
       <CustomInput
 
@@ -134,8 +133,7 @@ export default function InputAdornments(props) {
           </InputAdornment>
         }
       />
-        <div className={registrationStyle.hint}>{ meta.touched && meta.error ? meta.error : null}</div>
-    {/*</Box>*/}
+        {/*<div className={registrationStyle.hint}>{ meta.touched && meta.error ? meta.error : null}</div>*/}
   </article>
   );
 }

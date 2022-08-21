@@ -10,11 +10,11 @@ import styled from "@emotion/styled";
 export const MyTextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
-    <article className={registrationStyle.wrapper_center}>
+    <article className={ meta.touched && meta.error ? registrationStyle.wrapper_centerX  : registrationStyle.wrapper_center} data-tooltip={meta.error}>
       <p className={registrationStyle.input_label}>{label}</p>
       <input className={ meta.touched && meta.error ? registrationStyle.invalided_input : registrationStyle.contact_input}
-             {...field} {...props} />
-      <div className={registrationStyle.hint}>{ meta.touched && meta.error ? meta.error : null }</div>
+        {...field} {...props}
+      />
     </article>
   );
 };
@@ -89,7 +89,7 @@ export const RegStepOne = (props) => {
         <MyTextInput name='lastName' label='Фамилия' value={lastName} onChange={change.bind(null, "lastName")} />
         <MyTextInput name='email' label='Адрес почты' value={email} onChange={change.bind(null, "email")} />
         <InputAdornments name='password' label='Пароль' setValuePassword={setPassword} />
-        <button type='submit' className={registrationStyle.reg_btn}>Продолжить</button>
+        <button type='submit' className={!isValid ? registrationStyle.next_btn : registrationStyle.reg_btn }>Продолжить</button>
       </Form>
 
     </>
@@ -97,11 +97,10 @@ export const RegStepOne = (props) => {
 };
 
 export const RegStepTwo = (props) => {
-
   const ToggleButtonx = styledX(MuiToggleButton)({
     "&.Mui-selected": {
       color: "white",
-      backgroundColor: '#007EE2'
+      backgroundColor: '#007EE2',
     }
   });
 
@@ -110,6 +109,7 @@ export const RegStepTwo = (props) => {
     textAlign: "center",
     justifyContent: "center",
     margin: "0 auto",
+    boxShadow: 'inset 1px 0px 0px #007CDB, inset -2px 0px 0px #007CDB, inset 0px -2px 0px #007CDB, inset 0px 2px 0px #007CDB',
   });
 
   const {

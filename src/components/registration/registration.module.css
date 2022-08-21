@@ -54,19 +54,22 @@
 }
 
 .contact_input {
-  width: 298px;
-  padding: 8px 12px;
+  width: 303px;
+  padding: 8px 8px;
   border: solid 1px #AAA;
   font-size: inherit;
   border-radius: 4px;
-  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.16);
+  /*box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.16);*/
+  box-shadow: inset 1px 0px 0px #AAA, inset -1px 0px 0px #AAA, inset 0px -1px 0px #AAA, inset 0px 1px 0px #AAA;
 }
 
 .invalided_input {
-  width: 298px;
-  padding: 8px 12px;
-  border: 2px solid #ff7d87;
-  box-shadow: none;
+  width: 303px;
+  padding: 8px 8px;
+  box-shadow: inset -1px 0px 0px #ff7d87, inset 1px 0px 0px #ff7d87, inset 0px -1px 0px #ff7d87, inset 0px 1px 0px #FF7D87;
+  border: 1px solid #ff7d87;
+  /*box-shadow: none;*/
+  /*box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.16);*/
   font-size: inherit;
   border-radius: 4px;
 }
@@ -100,6 +103,22 @@
   cursor: pointer;
   font-size: inherit;
   background-color: #007EE2;
+  color: #fff;
+  padding: 8px 0;
+  margin-top: 25px;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.next_btn {
+  width: 320px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: inherit;
+  background-color: #AAA;
   color: #fff;
   padding: 8px 0;
   margin-top: 25px;
@@ -178,6 +197,41 @@
 
 .wrapper_center {
   margin: 4px auto;
+}
+
+.wrapper_centerX {
+  margin: 4px auto;
+  position: relative;
+}
+
+.wrapper_centerX::before,
+.wrapper_centerX::after {
+  position: absolute;
+  top: 1.5rem;
+  right: -11.3rem;
+  transform: translateX(0%) translateY(3%);
+  font-size: 15px;
+  text-align: center;
+}
+
+.wrapper_centerX::before {
+  content: attr(data-tooltip);
+  height: max-content;
+  max-height: 100%;
+  width: 170px;
+  background: #fff;
+  border: 1px solid #AAA;
+  border-radius: 4px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05), 0px 1px 3px rgba(0, 0, 0, 0.16);
+  box-sizing: border-box;
+  padding: 0.1rem;
+}
+
+.wrapper_centerX::after {
+  content: '';
+  border: 10px solid transparent;
+  border-right-color: #AAA;
+  transform: translateX(-849%) translateY(20%);
 }
 
 .form {

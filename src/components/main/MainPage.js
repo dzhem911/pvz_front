@@ -8,6 +8,7 @@ import { styled as styledX} from '@mui/material/styles'
 import Registration from "../registration/Registration";
 import ResetPasswordForm from "./resetPassword/ResetPasswordForm";
 
+
 const MainPage = () => {
   const [modal, setModal] = useState(false)
   const [signInModal, setSignInModal] = useState(false)
@@ -20,13 +21,17 @@ const MainPage = () => {
     textAlign: "center",
     justifyContent: "center",
     margin: "auto",
+    boxShadow: 'inset 1px 0px 0px #007CDB, inset -2px 0px 0px #007CDB, inset 0px -2px 0px #007CDB, inset 0px 2px 0px #007CDB',
   });
 
-  const ToggleButtonx = styledX(MuiToggleButton)({
+  const ToggleButtonLeft = styledX(MuiToggleButton)({
     "&.Mui-selected": {
       color: "white",
-      backgroundColor: '#007EE2'
+      backgroundColor: '#007EE2',
     }
+  });
+  const ToggleButtonRight = styledX(MuiToggleButton)({
+    "&.Mui-selected": {}
   });
 
   const handleChange = (_, value) => {
@@ -40,22 +45,23 @@ const MainPage = () => {
       <span className={mainPageStyleX.description}>Статистика и контроль результатов<br/> вашего бизнеса</span>
       <ToggleButtonGroupX className={mainPageStyleX.toggle_button_group}
                          color='primary'
-                         exclusive
+                         // selected
                          onChange={handleChange}
                          value={currentToggle}
       >
-        <ToggleButtonx className={mainPageStyleX.toggle_button_group__item}
+        <ToggleButtonLeft className={mainPageStyleX.toggle_button_group__item}
                        value="Регистрация"
                        onClick={()=>setModal(true)}
+                       selected={true}
         >
           Регистрация
-        </ToggleButtonx>
-        <ToggleButtonx className={mainPageStyleX.toggle_button_group__item}
+        </ToggleButtonLeft>
+        <ToggleButtonRight className={mainPageStyleX.toggle_button_group__item}
                        value="Войти"
                        onClick={()=>setSignInModal(true)}
         >
           Войти
-        </ToggleButtonx>
+        </ToggleButtonRight>
       </ToggleButtonGroupX>
       <MyModal visible={modal} setVisible={setModal} step={nextPage} setStep={setNextPage}>
         <Registration/>
