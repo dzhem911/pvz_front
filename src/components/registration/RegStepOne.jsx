@@ -163,7 +163,6 @@ export const RegStepTwo = (props) => {
         <div className={registrationStyle.reserve_area}>&nbsp;</div>
         <button className={registrationStyle.reg_btn}  type='submit'>Зарегистрироваться</button>
       </Form>
-
     </>
   );
 };
