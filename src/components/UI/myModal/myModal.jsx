@@ -36,7 +36,7 @@ const MyModal = ({children, visible, setVisible, setStep, setSignInVisible, sign
 
   return (
     <div className={rootClasses.join(' ')} onClick={clickHandler}>
-      {/*<CancelIcon className={modalStyle.closeIcon} />*/}
+      <CancelIcon className={modalStyle.closeIcon} sx={{color: '#EEE'}} />
       <div className={modalStyle.myModalContent} onClick={e => e.stopPropagation()}>
         {children}
       </div>
