@@ -3,6 +3,7 @@ import AuthService from "../../services/AuthService";
 import {logoutUserAction} from "../../redux/userReducer";
 import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
+import {hideRegModalAction, hideSignInModalAction} from "../../redux/modalsReducer";
 
 const LogoutButton = () => {
 
@@ -16,6 +17,8 @@ const LogoutButton = () => {
       sessionStorage.removeItem('user_email')
       sessionStorage.removeItem('user_role')
       dispatch(logoutUserAction())
+      dispatch(hideRegModalAction())
+      dispatch(hideSignInModalAction())
       navigate('/')
     } catch (e) {
       console.log(e.response?.data?.message);

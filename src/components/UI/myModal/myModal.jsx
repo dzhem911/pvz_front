@@ -2,16 +2,17 @@ import React, {useState} from 'react';
 import modalStyle from './modal.module.css'
 import CancelIcon from '@mui/icons-material/Cancel';
 import {useDispatch, useSelector} from "react-redux";
-import {hideSignInModalAction} from "../../../redux/modalsReducer";
+import {hideRegModalAction, hideSignInModalAction} from "../../../redux/modalsReducer";
 
 const MyModal = ({children, visible, setVisible, setStep, setSignInVisible, signInVisible, step, pasResetModal, setPasResetModal}) => {
 
   const rootClasses = [modalStyle.myModal]
-  // const dispatch = useDispatch()
-  // const loginModal = useSelector(state => state.modal.signInModal)
+  const dispatch = useDispatch()
+  const regModal = useSelector(state => state.modal.registrationModal)
+  const loginModal = useSelector(state => state.modal.signInModal)
 
 
-  if(visible || signInVisible || pasResetModal ) {
+  if(visible || signInVisible || pasResetModal) {
     rootClasses.push(modalStyle.active)
   }
 
@@ -29,9 +30,9 @@ const MyModal = ({children, visible, setVisible, setStep, setSignInVisible, sign
       setPasResetModal(false)
     }
 
-    // if(loginModal) {
-    //   dispatch(hideSignInModalAction())
-    // }
+    if(regModal) {
+      dispatch(hideRegModalAction())
+    }
   }
 
   return (

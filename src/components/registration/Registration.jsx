@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import {loginUserAction} from "../../redux/userReducer";
-import Loader from "../UI/loader/Loader";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import {Formik} from "formik";
 import * as Yup from "yup";
 import {RegStepOne, RegStepTwo} from "./RegStepOne";
 import registrationStyle from './registration.module.css'
+import {hideRegModalAction} from "../../redux/modalsReducer";
+import CancelIcon from "@mui/icons-material/Cancel";
 
 
 const Registration = () => {
@@ -74,7 +75,6 @@ const Registration = () => {
     }
   })
 
-
   const regUser = async () => {
     try {
       await AuthService.registration(firstName, lastName, email, companyName, password);
@@ -92,74 +92,89 @@ const Registration = () => {
 
   const dispatch = useDispatch()
   let navigate = useNavigate()
+  const rootClasses = [registrationStyle.myModal]
+  const regModal = useSelector(state => state.modal.registrationModal)
+
+  if(regModal) {
+    rootClasses.push(registrationStyle.active)
+  }
+
+  const clickHandler = () => {
+    if(regModal) {
+      dispatch(hideRegModalAction())
+    }
+  }
 
   return (
-    loader ? <Loader/>
-    :
-      <div className={registrationStyle.wrapper}>
-        <article className={registrationStyle.container}>
-          <h4 className={registrationStyle.block_item__title}>Регистрация</h4>
-          <div className={registrationStyle.block_item_title__steps}>
+    <div className={rootClasses.join(' ')} onClick={clickHandler}>
+      <CancelIcon className={registrationStyle.closeIcon} sx={{color: '#EEE'}} />
+      <div className={registrationStyle.myModalContent} onClick={e => e.stopPropagation()}>
+        <div className={registrationStyle.wrapper}>
+          <article className={registrationStyle.container}>
+            <h4 className={registrationStyle.block_item__title}>Регистрация</h4>
+            <div className={registrationStyle.block_item_title__steps}>
+              {!nextPage ?
+                <>
+                  <span className={registrationStyle.step}>Шаг 1</span>
+                  <hr className={registrationStyle.hr_horizontal_gradient}/>
+                  <span className={registrationStyle.circled_step}>2</span>
+                </>
+                :
+                null
+              }
+              {nextPageX ?
+                <>
+                <span className={registrationStyle.circled_second_step}>
+                  <CheckCircleIcon color="disabled"/>
+                </span>
+                  <hr className={registrationStyle.hr_horizontal_gradient}/>
+                  <span className={registrationStyle.step}>Шаг 2</span>
+                </>
+                :
+                null}
+            </div>
             {!nextPage ?
-              <>
-                <span className={registrationStyle.step}>Шаг 1</span>
-                <hr className={registrationStyle.hr_horizontal_gradient}/>
-                <span className={registrationStyle.circled_step}>2</span>
-              </>
+              <div className={registrationStyle.block}>
+                <Formik
+                  render={props => <RegStepOne {...props}/>}
+                  initialValues={valuesFirstStep}
+                  validationSchema={schemaFirstStep}
+                  onSubmit={async (values, { setSubmitting }) => {
+                    await new Promise(r => setTimeout(r, 500));
+                    setSubmitting(false);
+                    setFirstName(values.firstName)
+                    setLastName(values.lastName)
+                    setEmail(values.email)
+                    setPassword(values.password)
+                    setNextPage(!nextPage)
+                    setNextPageX(!nextPageX)
+                  }}
+                />
+              </div>
               :
               null
             }
             {nextPageX ?
-              <>
-              <span className={registrationStyle.circled_second_step}>
-                <CheckCircleIcon color="disabled"/>
-              </span>
-                <hr className={registrationStyle.hr_horizontal_gradient}/>
-                <span className={registrationStyle.step}>Шаг 2</span>
-              </>
+              <div className={registrationStyle.block}>
+                <Formik
+                  render={props => <RegStepTwo {...props} setCurrentToggle={setCurrentToggle} currentToggle={currentToggle} />}
+                  initialValues={valuesSecondStep}
+                  validationSchema={schemaSecondStep}
+                  onSubmit={async (values, { setSubmitting }) => {
+                    await new Promise(r => setTimeout(r, 500));
+                    setSubmitting(false);
+                    await setCompanyName(values.companyName)
+                    await setITN(values.ITN)
+                    await regUser()
+                  }}
+                />
+              </div>
               :
               null}
-          </div>
-          {!nextPage ?
-            <div className={registrationStyle.block}>
-              <Formik
-                render={props => <RegStepOne {...props}/>}
-                initialValues={valuesFirstStep}
-                validationSchema={schemaFirstStep}
-                onSubmit={async (values, { setSubmitting }) => {
-                  await new Promise(r => setTimeout(r, 500));
-                  setSubmitting(false);
-                  setFirstName(values.firstName)
-                  setLastName(values.lastName)
-                  setEmail(values.email)
-                  setPassword(values.password)
-                  setNextPage(!nextPage)
-                  setNextPageX(!nextPageX)
-                }}
-              />
-            </div>
-            :
-            null
-          }
-          {nextPageX ?
-            <div className={registrationStyle.block}>
-              <Formik
-                render={props => <RegStepTwo {...props} setCurrentToggle={setCurrentToggle} currentToggle={currentToggle} />}
-                initialValues={valuesSecondStep}
-                validationSchema={schemaSecondStep}
-                onSubmit={async (values, { setSubmitting }) => {
-                  await new Promise(r => setTimeout(r, 500));
-                  setSubmitting(false);
-                  await setCompanyName(values.companyName)
-                  await setITN(values.ITN)
-                  await regUser()
-                }}
-              />
-            </div>
-            :
-            null}
-        </article>
+          </article>
+        </div>
       </div>
+    </div>
   );
 };
 

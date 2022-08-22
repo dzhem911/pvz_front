@@ -254,3 +254,31 @@
   margin-top: 24px;
   margin-bottom: 24px;
 }
+
+.myModal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  background: rgba(28, 51, 73, 0.9)
+}
+
+.myModal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.myModalContent {
+  padding: 0;
+  background: white;
+  border-radius: 6px;
+  min-width: 250px;
+}
+
+.closeIcon {
+  position: relative;
+  transform: translateX(1774%) translateY(-1223%);
+}

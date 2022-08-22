@@ -7,6 +7,8 @@ import MuiToggleButton from "@mui/material/ToggleButton";
 import { styled as styledX} from '@mui/material/styles'
 import Registration from "../registration/Registration";
 import ResetPasswordForm from "./resetPassword/ResetPasswordForm";
+import {useDispatch, useSelector} from "react-redux";
+import {showingRegModalAction, showingSignInModalAction} from "../../redux/modalsReducer";
 
 
 const MainPage = () => {
@@ -15,6 +17,8 @@ const MainPage = () => {
   const [pasResetModal, setPasResetModal] = useState(false)
   const [nextPage, setNextPage] = useState(false)
   const [currentToggle, setCurrentToggle] = useState('Регистрация')
+
+  const dispatch = useDispatch()
 
   const ToggleButtonGroupX = styledX(MuiToggleButtonGroup)({
     display: "flex",
@@ -49,25 +53,29 @@ const MainPage = () => {
       <span className={mainPageStyleX.description}>Статистика и контроль результатов<br/> вашего бизнеса</span>
       <ToggleButtonGroupX className={mainPageStyleX.toggle_button_group}
                          color='primary'
-                         // selected
-                         onChange={handleChange}
+                         // onChange={handleChange}
                          value={currentToggle}
       >
         <ToggleButtonLeft className={mainPageStyleX.toggle_button_group__item}
                        value="Регистрация"
-                       onClick={()=>setModal(true)}
+                       onClick={()=>dispatch(showingRegModalAction())}
+                       // onClick={()=>setModal(true)}
                        selected={true}
         >
           Регистрация
         </ToggleButtonLeft>
         <ToggleButtonRight className={mainPageStyleX.toggle_button_group__item}
                        value="Войти"
-                       onClick={()=>setSignInModal(true)}
+                       onClick={()=>dispatch(showingSignInModalAction())}
+                       // onClick={()=>setSignInModal(true)}
         >
           Войти
         </ToggleButtonRight>
       </ToggleButtonGroupX>
-      <MyModal visible={modal} setVisible={setModal} step={nextPage} setStep={setNextPage}>
+      <Registration/>
+      <LoginForm />
+      <ResetPasswordForm  />
+      {/*<MyModal visible={modal} setVisible={setModal} step={nextPage} setStep={setNextPage}>
         <Registration/>
       </MyModal>
       <MyModal signInVisible={signInModal} setSignInVisible={setSignInModal}>
@@ -75,7 +83,7 @@ const MainPage = () => {
       </MyModal>
       <MyModal pasResetModal={pasResetModal} setPasResetModal={setPasResetModal}>
         <ResetPasswordForm setSignInVisible={setSignInModal} setPasResetModal={setPasResetModal} />
-      </MyModal>
+      </MyModal>*/}
     </div>
     </>
   );

@@ -3,6 +3,7 @@ import {userReducer} from "../userReducer";
 import thunk from "redux-thunk";
 import {loaderReducer} from "../loaderReducer";
 import {modalReducer} from "../modalsReducer";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 const rootReducer = combineReducers({
   setUser: userReducer,
@@ -10,4 +11,4 @@ const rootReducer = combineReducers({
   modal: modalReducer,
 })
 
-export const store = createStore(rootReducer, applyMiddleware(thunk))
+export const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))

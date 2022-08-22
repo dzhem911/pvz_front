@@ -41,11 +41,11 @@ const TopBar = () => {
             <img className={topBarStyles.topAvatar} src="https://i.pinimg.com/originals/38/bb/a8/38bba86077ca44eebf9faf9220f7466b.png" alt="ava"/>
             </>
             :
-            <button onClick={()=>setSignInModal(true)} className={topBarStyles.login_btn}>Войти</button>
+            <button onClick={()=>dispatch(showingSignInModalAction())} className={topBarStyles.login_btn}>Войти</button>
           }
-          <MyModal signInVisible={signInModal} setSignInVisible={setSignInModal}>
-            <LoginForm setSignInVisible={setSignInModal} setVisible={setModal} setPasResetModal={setPasResetModal} />
-          </MyModal>
+          {/*<MyModal signInVisible={signInModal} setSignInVisible={setSignInModal}>*/}
+          {/*  <LoginForm setSignInVisible={setSignInModal} setVisible={setModal} setPasResetModal={setPasResetModal} />*/}
+          {/*</MyModal>*/}
         </div>
       </div>
     </div>
