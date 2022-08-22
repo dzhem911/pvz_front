@@ -3,17 +3,11 @@ import topBarStyles from './topbar.module.css'
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import {useDispatch, useSelector} from "react-redux";
 import {showingSignInModalAction} from "../../redux/modalsReducer";
-import LoginForm from "../main/LoginForm";
-import MyModal from "../UI/myModal/myModal";
 
 const TopBar = () => {
 
   const [userMail, setUsermail] = useState('')
   const wowMail = useSelector(state => state.setUser.user)
-  const [modal, setModal] = useState(false)
-  const [signInModal, setSignInModal] = useState(false)
-  const [pasResetModal, setPasResetModal] = useState(false)
-
   const dispatch = useDispatch()
 
 
@@ -43,9 +37,6 @@ const TopBar = () => {
             :
             <button onClick={()=>dispatch(showingSignInModalAction())} className={topBarStyles.login_btn}>Войти</button>
           }
-          {/*<MyModal signInVisible={signInModal} setSignInVisible={setSignInModal}>*/}
-          {/*  <LoginForm setSignInVisible={setSignInModal} setVisible={setModal} setPasResetModal={setPasResetModal} />*/}
-          {/*</MyModal>*/}
         </div>
       </div>
     </div>
