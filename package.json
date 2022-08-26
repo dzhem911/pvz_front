@@ -17,6 +17,10 @@
     "formik": "^2.2.9",
     "g": "^2.0.1",
     "heroku": "^7.3.0",
+    "lodash": "^4.17.21",
+    "lodash.findkey": "^4.6.0",
+    "lodash.invert": "^4.3.0",
+    "lodash.isequal": "^4.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.2",
@@ -26,6 +30,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5",
     "yup": "^0.32.11"
   },
   "scripts": {

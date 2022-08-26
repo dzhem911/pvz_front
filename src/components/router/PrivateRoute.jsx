@@ -52,7 +52,9 @@ const PrivateRoute = () => {
   return (localStorage.getItem('token') ?
     <div className='container'>
       <SideBar/>
-      <Outlet/>
+      <main>
+        <Outlet/>
+      </main>
     </div>
     :
     <Navigate to='/'/>)

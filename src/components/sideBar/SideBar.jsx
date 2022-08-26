@@ -16,7 +16,7 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className="sidebarWrapper">
-        <div className="sidebarMenu">
+        <nav className="sidebarMenu">
           <ul className="sidebarList">
             <NavLink className="sidebarListItem active" to='/account'>
               <HomeIcon className="sidebarIcon" />
@@ -56,7 +56,7 @@ const Sidebar = () => {
               Настройки Avis
             </NavLink>
           </ul>
-        </div>
+        </nav>
       </div>
     </div>
   );

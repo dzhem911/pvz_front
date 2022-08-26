@@ -17,7 +17,7 @@ const TopBar = () => {
 
 
   return (
-    <div className={topBarStyles.topBar}>
+    <header className={topBarStyles.topBar}>
       <div className={topBarStyles.topBarWrapper}>
         <div className={topBarStyles.topLeft}>
           <span className={topBarStyles.logo_wrapper}>
@@ -39,7 +39,7 @@ const TopBar = () => {
           }
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
