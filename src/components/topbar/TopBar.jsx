@@ -3,6 +3,7 @@ import topBarStyles from './topbar.module.css'
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import {useDispatch, useSelector} from "react-redux";
 import {showingSignInModalAction} from "../../redux/modalsReducer";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const TopBar = () => {
 
@@ -32,7 +33,7 @@ const TopBar = () => {
             <div className={topBarStyles.topBarIconContainer}>
               {wowMail.email || userMail}
             </div>
-            <img className={topBarStyles.topAvatar} src="https://i.pinimg.com/originals/38/bb/a8/38bba86077ca44eebf9faf9220f7466b.png" alt="ava"/>
+            <AccountCircleIcon sx={{ fontSize: 40 }} color={'action'}/>
             </>
             :
             <button onClick={()=>dispatch(showingSignInModalAction())} className={topBarStyles.login_btn}>Войти</button>

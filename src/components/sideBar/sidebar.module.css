@@ -27,11 +27,24 @@
 }
 
 .sidebarListItem {
-  padding: 5px;
+  padding: 10px 4px;
   cursor: pointer;
   display: flex;
-  align-items: center; /* align item with text */
+  align-items: center;
   border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+  width: 208px;
+}
+
+.sidebarListItem:visited {
+
+}
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
 }
 
 .sidebarListItem.active, .sidebarListItem:hover {
@@ -41,4 +54,9 @@
 .sidebarIcon {
   margin-right: 5px;
   font-size: 20px !important;
+}
+
+.disabled {
+  pointer-events:none;
+opacity:0.6;
 }

@@ -41,6 +41,7 @@
 .topRight {
   display: flex;
   align-items: center;
+  margin-right: 31px;
 }
 
 .topBarIconContainer {

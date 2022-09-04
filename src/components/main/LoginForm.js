@@ -85,11 +85,12 @@ const LoginForm = ({setSignInVisible, setVisible, setPasResetModal}) => {
               <Formik
                 initialValues={initialValues}
                 validationSchema={schemaValidation}
-                onSubmit={async (values, { setSubmitting }) => {
+                onSubmit={async (values, { props, setSubmitting, setStatus }) => {
                   await new Promise(r => setTimeout(r, 500));
                   setSubmitting(false);
                   setEmail(values.email)
                   setPassword(values.password)
+                  setStatus()
                   await loginUser('_', values.email, values.password)
                 }}
               >
