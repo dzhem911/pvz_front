@@ -2,7 +2,7 @@ import './listpvz.css'
 import React, {useCallback, useState, useEffect} from "react";
 import CompanyService from "../../services/CompanyService";
 import UserService from "../../services/UserService";
-import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
+import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, useAutocomplete} from "@mui/material";
 
 const ListPvz = () => {
 
@@ -26,10 +26,12 @@ const ListPvz = () => {
     setCompanies(companiesResponse.data)
   }, [setUsers, setCompanies])
 
-  useEffect(() => (async () => {
-    await memoSetUsers()
-  })(), [])
-  console.log(companies)
+  useEffect(() => {
+    async function letsgo() {
+      await memoSetUsers()
+    }
+    letsgo()
+  }, [])
 
   const addPVZ = async (e) => {
     e.preventDefault()

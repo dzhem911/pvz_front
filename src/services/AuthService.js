@@ -3,19 +3,19 @@ import $api from "../https";
 export default class AuthService {
 
   static async login(email, password) {
-    return $api.post('/login', {email, password})
+    return $api.post('/login', {email, password}, {withCredentials: true})
   }
 
-  static async registration(firstName, lastName, phoneNumber, email, companyName, password, role) {
-    return $api.post('/registration', {firstName, lastName, phoneNumber, email, companyName, password, role})
+  static async registration(firstName, lastName, email, companyName, password, role) {
+    return $api.post('/registration', {firstName, lastName, email, companyName, password, role})
   }
 
   static async regUser(firstName, lastName, phoneNumber, email, founderEmail) {
     return $api.post('/reguser', {firstName, lastName, phoneNumber, email, founderEmail})
   }
 
-  static async logout() {
-    return $api.post('/logout')
+  static async logout(refreshToken) {
+    return $api.post('/logout', {refreshToken})
   }
 
   static async refreshPassword(email) {

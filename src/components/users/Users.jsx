@@ -1,11 +1,10 @@
 import React, {useCallback, useEffect} from 'react';
 import usersStyles from './users.module.css'
-import loginFormStyle from "../main/loginform.module.css";
 import {useState} from "react";
 import AuthService from "../../services/AuthService";
 import UserService from "../../services/UserService";
 import {Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow} from "@mui/material";
-import Loader from "../../loader/Loader";
+import Loader from "../UI/loader/Loader";
 
 const Users = () => {
   const [firstName, setFirstName] = useState('')
@@ -26,9 +25,12 @@ const Users = () => {
     setUsers(filterResponse)
   }, [setUsers])
 
-  useEffect(() => (async () => {
+  useEffect(() => {
+    async function letsgo () {
     await memoSetUsers()
-  })(), [memoSetUsers])
+  }
+  letsgo()
+  }, [memoSetUsers])
 
   const addNewUser = async (e) => {
     e.preventDefault()

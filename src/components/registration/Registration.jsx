@@ -1,30 +1,83 @@
 import React, {useState} from 'react';
-import loginFormStyle from "../main/loginform.module.css";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import AuthService from "../../services/AuthService";
 import {loginUserAction} from "../../redux/userReducer";
-import Loader from "../../loader/Loader";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import {Formik} from "formik";
+import * as Yup from "yup";
+import {RegStepOne, RegStepTwo} from "./RegStepOne";
+import registrationStyle from './registration.module.css'
+import {hideRegModalAction} from "../../redux/modalsReducer";
+import CancelIcon from "@mui/icons-material/Cancel";
+
 
 const Registration = () => {
 
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
   const [email, setEmail] = useState('')
   const [companyName, setCompanyName] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmedPassword, setConfirmedPassword] = useState('')
   const [loader, setLoader] = useState(false)
+  const [currentToggle, setCurrentToggle] = useState('ООО')
+  const [ITN, setITN] = useState('')
 
-  const dispatch = useDispatch()
-  let navigate = useNavigate()
+  const [nextPage, setNextPage] = useState(false)
+  const [nextPageX, setNextPageX] = useState(false)
 
-  const registerUser = async (e) => {
-    e.preventDefault()
-    setLoader(true)
+
+  const valuesFirstStep = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  }
+
+  const valuesSecondStep = {
+    currentToggle: '',
+    companyName: '',
+    ITN: '',
+    role: '',
+  }
+
+  const schemaFirstStep = Yup.object({
+    firstName: Yup.string()
+      .min(2, "Напишите ваше имя")
+      .required("Обязательное поле"),
+    lastName: Yup.string()
+      .min(2, "Напишите вашу фамилию")
+      .required("Обязательное поле"),
+    email: Yup.string()
+      .email("Укажите действующий адрес почты для связи")
+      .required("Обязательное поле"),
+    password: Yup.string()
+     .min(6, 'Пароль должен содержать не менее 6 символов')
+    .required('Обязательное поле')
+  });
+
+  const schemaSecondStep = Yup.object({
+    companyName: Yup.string()
+      .min(4, "Напишите фамилию, имя и отчество без сокращений")
+      .required("Обязательное поле"),
+    ITN: Yup.number()
+      .typeError('Введите корректный ИНН')
+      // .test('len', 'ИНН юр. лица состоит из 10 цифр', val => val && val.toString().length >= 10)
+      .required("Обязательное поле"),
+  })
+
+  Yup.setLocale({
+    string: {
+      required: 'Обязательное поле!!!'
+    },
+    number: {
+
+    }
+  })
+
+  const regUser = async () => {
     try {
-      await AuthService.registration(firstName, lastName, phoneNumber, email, companyName, password);
+      await AuthService.registration(firstName, lastName, email, companyName, password);
       const response = await AuthService.login(email, password);
       localStorage.setItem('token', response.data.accessToken);
       sessionStorage.setItem('user_email', response.data.user.email);
@@ -37,65 +90,91 @@ const Registration = () => {
     }
   }
 
+  const dispatch = useDispatch()
+  let navigate = useNavigate()
+  const rootClasses = [registrationStyle.myModal]
+  const regModal = useSelector(state => state.modal.registrationModal)
+
+  if(regModal) {
+    rootClasses.push(registrationStyle.active)
+  }
+
+  const clickHandler = () => {
+    if(regModal) {
+      dispatch(hideRegModalAction())
+    }
+  }
+
   return (
-    loader ? <Loader/>
-    : <form className={`${loginFormStyle.form} ${loginFormStyle.form_signup}`} onSubmit={registerUser}>
-      <h3 className={loginFormStyle.form__title}>Регистрация</h3>
-      <p>
-        <input className={loginFormStyle.form__input}
-               onChange={e => setFirstName(e.target.value)}
-               value={firstName}
-               type='text'
-               placeholder='Имя' />
-      </p>
-      <p>
-        <input className={loginFormStyle.form__input}
-                onChange={e => setLastName(e.target.value)}
-                value={lastName}
-                type='text'
-                placeholder='Фамилия' />
-      </p>
-      <p>
-        <input className={loginFormStyle.form__input}
-               onChange={e => setPhoneNumber(e.target.value)}
-               value={phoneNumber}
-               type='tel'
-               pattern="[+]{1}[0-9]{11,14}"
-               placeholder='Номер телефона' />
-      </p>
-      <p>
-        <input className={loginFormStyle.form__input}
-               onChange={e => setEmail(e.target.value)}
-               value={email}
-               type='email'
-               placeholder='Email' />
-      </p>
-      <p>
-        <input className={loginFormStyle.form__input}
-               onChange={e => setCompanyName(e.target.value)}
-               value={companyName}
-               type='text'
-               placeholder='Наименование компании' />
-      </p>
-      <p>
-        <input className={loginFormStyle.form__input}
-               onChange={e => setPassword(e.target.value)}
-               value={password}
-               type='password'
-               placeholder='Пароль' />
-      </p>
-      <p>
-        <input className={loginFormStyle.form__input}
-               onChange={e => setConfirmedPassword(e.target.value)}
-               value={confirmedPassword}
-               type='password'
-               placeholder='Подтвердите пароль' />
-        {password === confirmedPassword ? 'Все ок' : 'Пароли не сходятся'}
-      </p>
-      <p>
-        <button className={`${loginFormStyle.form__btn} ${loginFormStyle.form__btn_signup}`}>Зарегистрироваться</button>
-      </p>
-    </form>
+    <div className={rootClasses.join(' ')} onClick={clickHandler}>
+      <CancelIcon className={registrationStyle.closeIcon} sx={{color: '#EEE'}} />
+      <div className={registrationStyle.myModalContent} onClick={e => e.stopPropagation()}>
+        <div className={registrationStyle.wrapper}>
+          <article className={registrationStyle.container}>
+            <h4 className={registrationStyle.block_item__title}>Регистрация</h4>
+            <div className={registrationStyle.block_item_title__steps}>
+              {!nextPage ?
+                <>
+                  <span className={registrationStyle.step}>Шаг 1</span>
+                  <hr className={registrationStyle.hr_horizontal_gradient}/>
+                  <span className={registrationStyle.circled_step}>2</span>
+                </>
+                :
+                null
+              }
+              {nextPageX ?
+                <>
+                <span className={registrationStyle.circled_second_step}>
+                  <CheckCircleIcon color="disabled"/>
+                </span>
+                  <hr className={registrationStyle.hr_horizontal_gradient}/>
+                  <span className={registrationStyle.step}>Шаг 2</span>
+                </>
+                :
+                null}
+            </div>
+            {!nextPage ?
+              <div className={registrationStyle.block}>
+                <Formik
+                  render={props => <RegStepOne {...props}/>}
+                  initialValues={valuesFirstStep}
+                  validationSchema={schemaFirstStep}
+                  onSubmit={async (values, { setSubmitting }) => {
+                    await new Promise(r => setTimeout(r, 500));
+                    setSubmitting(false);
+                    setFirstName(values.firstName)
+                    setLastName(values.lastName)
+                    setEmail(values.email)
+                    setPassword(values.password)
+                    setNextPage(!nextPage)
+                    setNextPageX(!nextPageX)
+                  }}
+                />
+              </div>
+              :
+              null
+            }
+            {nextPageX ?
+              <div className={registrationStyle.block}>
+                <Formik
+                  render={props => <RegStepTwo {...props} setCurrentToggle={setCurrentToggle} currentToggle={currentToggle} />}
+                  initialValues={valuesSecondStep}
+                  validationSchema={schemaSecondStep}
+                  onSubmit={async (values, { setSubmitting }) => {
+                    await new Promise(r => setTimeout(r, 500));
+                    setSubmitting(false);
+                    await setCompanyName(values.companyName)
+                    await setITN(values.ITN)
+                    await regUser()
+                  }}
+                />
+              </div>
+              :
+              null}
+          </article>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,10 +1,11 @@
 .topBar {
   width: 100%;
-  height: 50px;
+  height: 60px;
   background-color: #EEEEEE;
   position: sticky;
   top: 0;
   z-index: 999;
+  margin-bottom: 20px;
 }
 
 .topBarWrapper {
@@ -15,8 +16,9 @@
   justify-content: space-between;
 }
 
-.logo-wrapper {
+.logo_wrapper {
   padding-left: 5px;
+  color: #ffffff;
 }
 
 .logo {
@@ -33,11 +35,13 @@
   align-items: center;
   background-color: #4F4F4F;
   height: 100%;
+  width: 224px
 }
 
 .topRight {
   display: flex;
   align-items: center;
+  margin-right: 31px;
 }
 
 .topBarIconContainer {
@@ -67,4 +71,29 @@
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.login_btn {
+  color: #007EE2;
+  border: 2px solid #007EE2;
+  border-radius: 4px;
+  background: #fff;
+  gap: 10px;
+  padding: 7px 26px;
+  width: 92px;
+  height: 32px;
+  margin-right: 32px;
+}
+
+.login_btn:hover {
+  cursor: pointer;
+  color: #1976d2;
+  border: 2px solid #007EE2;
+  border-radius: 4px;
+  background-color: rgba(25, 118, 210, 0.08);;
+  gap: 10px;
+  padding: 7px 26px;
+  width: 92px;
+  height: 32px;
+  margin-right: 32px;
 }
